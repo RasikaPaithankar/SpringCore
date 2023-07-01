@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+
+<!-- 1. Construction Injection -->
+
+	<!-- primitive and String-based values -->
+	<bean id="student" class="org.rasika.LeadToSpring.Student">
+		<constructor-arg>
+			<value>1</value>
+		</constructor-arg>
+		<constructor-arg value="1" type="int"></constructor-arg>
+		<constructor-arg value="Raj"></constructor-arg>
+	</bean>
+	
+	<!-- Constructor Injection with Dependent Object -->
+	<!-- Book list, String list -->
+	
+	<bean id="library" class="org.rasika.LeadToSpring.Library">
+		<constructor-arg>
+			<ref bean="teacher"/>
+		</constructor-arg>
+		<constructor-arg>
+			<list>
+				<ref bean="book"/>
+			</list>
+		</constructor-arg>
+		<constructor-arg>
+			<list>
+				<value>Chandoba</value>
+				<value>Telani Rama</value>
+				<value>Aribian nights</value>
+			</list>
+		</constructor-arg>		
+	</bean>
+
+	<bean id="teacher" class="org.rasika.LeadToSpring.Teacher">
+		<constructor-arg value="1"></constructor-arg>
+		<constructor-arg value="Sudha"></constructor-arg>
+		<constructor-arg value="Murthy"></constructor-arg>
+		<constructor-arg value="Social-activist"></constructor-arg>
+	</bean>
+
+	<bean id="book" class="org.rasika.LeadToSpring.Book">
+		<constructor-arg value="1" type="int"></constructor-arg>
+		<constructor-arg value="Wise and otherwise" ></constructor-arg>
+	</bean>
+
+	<!-- Map - non-object -->
+
+	<bean id="book1" class="org.rasika.LeadToSpring.Book">
+		<constructor-arg value="2" type="int"></constructor-arg>
+		<constructor-arg value="Shyamchi Aai" ></constructor-arg>
+		<constructor-arg>
+			<map>
+				<entry key="Sane Guruji" value="150"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<!-- Map -Object -->
+	
+	<bean id="publisher" class="org.rasika.LeadToSpring.Publisher">
+		<constructor-arg>
+			<map>
+				<entry key-ref="book3" value-ref="author"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="book3" class="org.rasika.LeadToSpring.Book">
+		<constructor-arg value="3" type="int"></constructor-arg>
+		<constructor-arg value="AgniPankh" ></constructor-arg>
+		<constructor-arg>
+			<map>
+				<entry key="Dr. APJ Abdul Kalam" value="350"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="author" class="org.rasika.LeadToSpring.Author">
+		<constructor-arg value="1" type="int"></constructor-arg>
+		<constructor-arg value="Dr. APJ Abdul Kalam"></constructor-arg>
+	</bean>
+
+<!-- 	<context:component-scan base-package="org.rasika.LeadToSpring"></context:component-scan>  -->
+</beans>

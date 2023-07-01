@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<!-- Setter Injection - primitive Data types -->
+
+	<bean id="university" class="org.rasika.beancreationusingSI.University">
+		<property name="universityName">
+			<value>Pune University</value>
+		</property>
+	</bean>
+	
+	<bean id="department" class="org.rasika.beancreationusingSI.Department">
+		<property name="id" value="1"></property>
+	</bean>
+	
+	<!-- Setter Injection - Objects -->
+	<bean id="staff" class="org.rasika.beancreationusingSI.Staff">
+		<property name="teacher" ref="teacherBean"></property>
+	</bean>
+	
+	<bean id="teacherBean" class="org.rasika.beancreationusingSI.Teacher">
+		<property name="tId" value="1"></property>
+		<property name="name" value="Namita"></property>
+	</bean>
+	
+	<!-- Setter Injection - List  -->
+	<bean id="university1" class="org.rasika.beancreationusingSI.University">
+		<property name="universityName" value="Amchi University"></property>
+		<property name="streams">
+			<list>
+				<value>Engineering</value>
+				<value>Commerce</value>
+				<value>Arts</value>
+			</list>
+		</property>
+		<property name="department">
+			<list>
+				<ref bean="department1"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="department1" class="org.rasika.beancreationusingSI.Department">
+		<property name="id" value="2"></property>
+		<property name="departmentName" value="Electronics"></property>
+	</bean>
+	
+	<!-- Setter Injection - Map wrapper class -->
+	
+	<bean name="t1" class="org.rasika.beancreationusingSI.Teacher">
+		<property name="subjectExpertTeacher">
+			<map>
+				<entry key="1" value="Science"></entry>
+				<entry key="2" value="Math"></entry>
+			</map>
+		</property>
+	</bean>
+	
+	<!-- Setter Injection - Map objects-->
+	<bean id="staff1" class="org.rasika.beancreationusingSI.Staff">
+		<property name="adminMap">
+			<map>
+				<entry key-ref="department1" value-ref="administrator"></entry>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="administrator" class="org.rasika.beancreationusingSI.Administrator">
+		<property name="aId" value="1"></property>
+		<property name="aName" value="Mannual"></property>
+	</bean>
+</beans>	

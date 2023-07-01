@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+     
+     <bean id="country" class="org.rasika.autowiredemo.Country" autowire="byType">
+     	<property name="countryName" value="India"></property>
+     </bean> 
+     
+     <bean id="territory" class="org.rasika.autowiredemo.Territory">
+     	<property name="name" value="Mumbai"></property>
+     </bean>
+     
+     <bean id="territory1" class="org.rasika.autowiredemo.Territory">
+     	<property name="name" value="Kashir"></property>
+     </bean>
+     
+     <bean id="territory2" class="org.rasika.autowiredemo.Territory">
+     	<property name="name" value="Leh"></property>
+     </bean>
+     
+     <!--  Country country; -> By country name -->
+     <bean id="district" class="org.rasika.autowiredemo.District" autowire="byName"> 
+     	<property name="districtName" value="Panji"></property>
+     </bean>
+     
+     <!-- By Constructor -->
+     <bean id="state4" class="org.rasika.autowiredemo.State" autowire="constructor">
+     	<constructor-arg value="MH"></constructor-arg>
+     	
+     </bean>
+     
+     <bean id="district1" class="org.rasika.autowiredemo.District">
+     	<constructor-arg value="Pune"></constructor-arg>
+     	<constructor-arg ref="country"></constructor-arg>
+     </bean>
+     <bean id="district2" class="org.rasika.autowiredemo.District">
+     	<constructor-arg value="Mumbai"></constructor-arg>
+     	<constructor-arg ref="country"></constructor-arg>
+     </bean>
+     <bean id="district3" class="org.rasika.autowiredemo.District">
+     	<constructor-arg value="Nashik"></constructor-arg>
+     	<constructor-arg ref="country"></constructor-arg>
+     </bean>
+     
+     
+     <bean id="mobiles" class="org.rasika.autowiredemo.MobileFactory" factory-method="getMobiles">
+     </bean>
+</beans>
